@@ -1,0 +1,176 @@
+/* General Styles */
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Navigation */
+nav {
+  background: #2c3e50;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Header */
+header {
+  background: url('header-bg.jpg') no-repeat center center/cover;
+  height: 250px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.header-content h1 {
+  margin: 0;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.header-content p {
+  font-size: 1.2rem;
+}
+
+/* Main Content */
+main {
+  padding: 20px;
+}
+
+.add-blog-section,
+.blogs-section {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-blog-section h2,
+.blogs-section h2 {
+  margin-bottom: 20px;
+}
+
+.blog-form input,
+.blog-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.blog-form .btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.blog-form .btn:hover {
+  background: #c0392b;
+}
+
+/* Blogs Section */
+.blogs-container .blog {
+  padding: 20px;
+  background: #f9f9f9;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.blog h3 {
+  margin-top: 0;
+}
+
+.blog-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.blog-actions .btn {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.blog-actions .btn:hover {
+  background: #2980b9;
+}
+
+.comments {
+  margin-top: 20px;
+}
+
+.comments h4 {
+  margin-bottom: 10px;
+}
+
+.comments ul {
+  list-style: none;
+  padding: 0;
+}
+
+.comments ul li {
+  background: #ecf0f1;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+/* Footer */
+footer {
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+footer p {
+  margin: 0;
+}
+   
+
+
+/* Blog Image Styles */
+.blog-image {
+  max-width: 100%; /* Ensures the image doesn't exceed the width of its container */
+  height: 250px; /* Maintains the aspect ratio of the image */
+  border-radius: 8px; /* Adds rounded corners for aesthetics */
+  margin-top: 10px; /* Adds some space above the image */
+}

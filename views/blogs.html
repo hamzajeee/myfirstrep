@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blogging Platform</title>
+  <link rel="stylesheet" href="/blogs.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <div class="logo">MyBlog</div>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <div class="header-content">
+      <h1>Welcome to MyBlog</h1>
+      <p>Your daily dose of amazing articles</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="add-blog-section">
+      <h2>Create a New Blog Post</h2>
+      <form action="/add-blog" method="POST" class="blog-form" enctype="multipart/form-data">
+        <input type="text" id="title" name="title" placeholder="Blog Title" required>
+        <textarea id="content" name="content" placeholder="Write your blog content here..." required></textarea>
+        <input type="file" id="image" name="image" accept="image/*">  <!-- Image upload field -->
+        <button type="submit" class="btn">Add Blog</button>
+      </form>
+    </section>
+
+    <section class="blogs-section">
+      <h2>All Blogs</h2>
+      <div id="blogs-container" class="blogs-container">
+        <!-- Blogs will be dynamically inserted here -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 MyBlog. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    async function fetchBlogs() {
+      try {
+        const response = await fetch('/api/blogs');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const blogs = await response.json();
+        console.log('Fetched blogs:', blogs);
+
+        const blogsContainer = document.getElementById('blogs-container');
+        blogsContainer.innerHTML = '';
+
+        blogs.forEach(blog => {
+          const blogDiv = document.createElement('div');
+          blogDiv.classList.add('blog');
+
+          blogDiv.innerHTML = `
+            <h3>${blog.title}</h3>
+            <p>${blog.content}</p>
+            ${blog.image ? `<img src="${blog.image}" alt="Blog Image" class="blog-image">` : ''}
+            <div class="blog-actions">
+              <form action="/like-blog/${blog._id}" method="POST">
+                <button type="submit" class="btn like-btn">Like (${blog.likes.length})</button>
+              </form>
+              <form action="/comment-blog/${blog._id}" method="POST" class="comment-form">
+                <input type="text" name="comment" placeholder="Add a comment..." required>
+                <button type="submit" class="btn comment-btn">Comment</button>
+              </form>
+            </div>
+            <div class="comments">
+              <h4>Comments</h4>
+              <ul>
+                ${blog.comments.map(comment => `
+                  <li><strong>${comment.commenter.email}:</strong> ${comment.comment}</li>
+                `).join('')}
+              </ul>
+            </div>
+          `;
+          blogsContainer.appendChild(blogDiv);
+        });
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+      }
+    }
+
+    window.onload = fetchBlogs;
+  </script>
+</body>
+</html>
